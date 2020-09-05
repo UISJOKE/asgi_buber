@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block content %}
+        {% if user.is_authenticated %}
+            <button>
+                <a href="{% url 'profile' %}">{{ user.username }}</a>
+            </button>
+            <a href="{% url 'logout' %}">Выход</a>
+        {% else %}
+            <button>
+                <a href="{% url 'register' %}">Регистрация</a>
+            </button><br>
+            <button>
+                <a href="{% url 'login' %}">Вход</a>
+            </button>
+        {% endif %}
+{% endblock %}

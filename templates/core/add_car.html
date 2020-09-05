@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% block content %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Add {{user.username}} car</legend>
+                  <div>
+                      <label>Car number:</label>
+                      {{ form.car_number }}
+                       <button>
+                            <a href="{% url 'add_number' %}">add number</a>
+                        </button>
+                  </div><br>
+                  <div>
+                      <label>Car type:</label>
+                      {{ form.car_type }}
+                  </div><br>
+                  <div>
+                      <label>Car model:</label>
+                      {{ form.car_model }}
+                       <button>
+                            <a href="{% url 'add_model' %}">add model</a>
+                        </button>
+                  </div><br>
+                  <div>
+                      {{ form.user }}
+                  </div><br>
+              </fieldset>
+              <div class="form-group">
+                  <button class="btn btn-outline-info" type="submit">Add</button>
+              </div>
+          </form>
+{% endblock %}

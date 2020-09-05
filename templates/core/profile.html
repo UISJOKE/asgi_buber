@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<style>
+body{background:url(https://bootstraptema.ru/images/bg/bg-1.png)}
+</style>
+        <div class="content-section">
+          <div class="media">
+            <div class="media-body" align="center">
+              <h2 class="account-heading">Profile {{ user.username }}</h2>
+                <img class="rounded-circle account-img" src="{{ user.avatar.url }}" width="250" height="250" alt="">
+            </div>
+          </div>
+          <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div align="center">
+                  {{ form.avatar }}
+              </div>
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">PROFILE INFO</legend>
+                  Username:<br><br>
+                  <div class="wrap-input100 input100 m-b-36">
+                        {{ form.username }}
+                  </div>
+{#              <span class="txt1 p-b-11">#}
+{#						Username#}
+{#					</span>#}
+{#                    <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">#}
+{#                        <input class="input100" type="text" name="username">#}
+{#                        <span class="focus-input100"></span>#}
+{#                    </div>#}
+                  E-mail:<br><br>
+                  <div class="input100" >{{ form.email}}</div>
+                  First name:<br><br>
+                  <div class="input100 ">{{ form.first_name }}</div>
+                  Last name:<br><br>
+                  <div class="input100 ">{{ form.last_name }}</div>
+                  Male:<br><br>
+                  <div class="input100 ">{{ form.male }}</div>
+                  Car:<br><br>
+                  <div class="input100 ">
+                      {%  if request.user == user %}
+                          {% for car in cars %}
+                              {{ car }}
+                          {% endfor %}
+                      {% endif %}
+                      <button>
+                            <a href="{% url 'add_car' %}" class="button">add car</a>
+                      </button>
+                  </div>>
+                  BIO:<br><br>
+                  <div class="input100">{{ form.bio }}</div>
+
+              </fieldset>
+              <div class="form-group">
+                  <button class="btn btn-outline-info" type="submit">Update</button>
+              </div>
+          </form>
+        </div>
+	<script src="/media/signup_login/vendor/jquery/jquery-3.2.1.min.js"></script>
+{% endblock %}
